@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🌌 WELCOME TO COSMOMC! 🌌</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            font-family: 'Roboto', Arial, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .starfield {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+        header {
+            text-align: center;
+            padding: 3rem 1rem 1rem 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            color: #00ffe7;
+            text-shadow: 0 0 20px #00ffe7, 0 0 40px #0ff;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ffe7, 0 0 20px #0ff; }
+            to { text-shadow: 0 0 30px #00ffe7, 0 0 60px #0ff; }
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            opacity: 0.85;
+        }
+        .cta {
+            display: inline-block;
+            background: linear-gradient(90deg, #00ffe7 0%, #7f7fd5 100%);
+            color: #1a1a2e;
+            font-weight: bold;
+            padding: 1rem 2.5rem;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            text-decoration: none;
+            box-shadow: 0 4px 24px #00ffe766;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: pulse 1.5s infinite alternate;
+        }
+        .cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px #00ffe799;
+        }
+        @keyframes pulse {
+            from { box-shadow: 0 4px 24px #00ffe766; }
+            to { box-shadow: 0 8px 32px #00ffe799; }
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: rgba(26,26,46,0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 40px #000a;
+            padding: 2.5rem 2rem;
+            position: relative;
+            z-index: 2;
+            border: 2px solid #00ffe7;
+            animation: fadeInUp 1.2s;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .feature {
+            background: linear-gradient(120deg, #23234d 60%, #1a1a2e 100%);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 2px 16px #00ffe733;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid #00ffe7;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px #00ffe799;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 8px #00ffe7aa);
+            animation: float 2s infinite alternate;
+        }
+        @keyframes float {
+            from { transform: translateY(0);}
+            to { transform: translateY(-8px);}
+        }
+        .feature-content h3 {
+            margin: 0 0 0.3rem 0;
+            font-size: 1.15rem;
+            color: #00ffe7;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.04em;
+        }
+        .feature-content p {
+            margin: 0;
+            font-size: 1rem;
+            color: #e0e0e0;
+            opacity: 0.92;
+        }
+        .owners {
+            margin: 2.5rem 0 1.5rem 0;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #fff;
+            opacity: 0.85;
+        }
+        .owners strong {
+            color: #00ffe7;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .discord-link {
+            display: inline-block;
+            background: linear-gradient(90deg, #7289da 0%, #00ffe7 100%);
+            color: #fff;
+            font-weight: bold;
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            text-decoration: none;
+            box-shadow: 0 4px 24px #7289da66;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 0.04em;
+        }
+        .discord-link:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 32px #7289da99;
+            background: linear-gradient(90deg, #00ffe7 0%, #7289da 100%);
+        }
+        .updates {
+            margin: 2rem 0 0 0;
+            text-align: center;
+            color: #fff;
+            font-size: 1.05rem;
+            opacity: 0.85;
+        }
+        @media (max-width: 600px) {
+            header { padding: 2rem 0.5rem 0.5rem 0.5rem; }
+            main { padding: 1.2rem 0.5rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="starfield"></canvas>
+    <header>
+        <div class="logo">🌌 WELCOME TO COSMOMC! 🌌</div>
+        <div class="subtitle">
+            🚀 Our Minecraft server has <b>LAUNCHED</b> — and <b>YOU’RE</b> invited to be part of it!
+        </div>
+        <a href="#join" class="cta" id="show-ip-btn">Join the Adventure</a>
+        <div id="server-ip" style="display:none; margin-top:1.2rem;">
+            <span style="
+            display:inline-block;
+            background:linear-gradient(90deg,#00ffe7 0%,#ffd700 100%);
+            color:#1a1a2e;
+            font-family:'Orbitron',sans-serif;
+            font-size:1.25rem;
+            font-weight:bold;
+            padding:0.7rem 2rem;
+            border-radius:32px;
+            box-shadow:0 0 24px #00ffe799,0 0 40px #ffd70066;
+            letter-spacing:0.07em;
+            text-shadow:0 0 12px #ffd700,0 0 18px #00ffe7;
+            animation:glow-ip 1.5s infinite alternate;
+            ">
+            in1.donhosting.site:19100
+            </span>
+        </div>
+        <style>
+            @keyframes glow-ip {
+            from { box-shadow:0 0 24px #00ffe799,0 0 40px #ffd70066; }
+            to { box-shadow:0 0 40px #ffd700cc,0 0 60px #00ffe7cc; }
+            }
+        </style>
+        <script>
+            document.getElementById('show-ip-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('server-ip').style.display = 'block';
+            });
+        </script>
+    </header>
+    <main>
+        <section>
+            <p style="font-size:1.15rem; text-align:center; margin-bottom:2rem;">
+                🕹️ Whether you're here to <b>build</b>, <b>battle</b>, or <b>become a legend</b>, <span style="color:#00ffe7;">CosmoMC</span> is the ultimate place to play, chill, and grow with a great community!<br>
+                <span style="color:#ffd700;">Explore a universe of possibilities in a beautifully crafted Minecraft world.</span>
+            </p>
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">⚒️</span>
+                    <div class="feature-content">
+                        <h3>Survival System</h3>
+                        <p>Classic survival with unique twists: custom biomes, rare mobs, and dynamic weather. Every adventure is different!</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🧠</span>
+                    <div class="feature-content">
+                        <h3>Smart Spawner</h3>
+                        <p>Innovative mob farms with advanced AI. Smarter, faster, and more rewarding for creative players.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">👑</span>
+                    <div class="feature-content">
+                        <h3>Custom Ranks</h3>
+                        <p>Earn your status! Unlock exclusive perks, cosmetics, and commands as you rise through the ranks.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🗝️</span>
+                    <div class="feature-content">
+                        <h3>Crate Keys & Rewards</h3>
+                        <p>Open crates for epic loot, rare items, and surprises. Daily, weekly, and event rewards await!</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">💰</span>
+                    <div class="feature-content">
+                        <h3>Player Shops & Economy</h3>
+                        <p>Build your own empire! Trade, buy, and sell with a player-driven economy and custom shops.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">⚔️</span>
+                    <div class="feature-content">
+                        <h3>PvP Arena & Events</h3>
+                        <p>Fight for glory in epic PvP battles, tournaments, and seasonal events. Only the best will rise!</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🔐</span>
+                    <div class="feature-content">
+                        <h3>Claim System</h3>
+                        <p>Protect your builds with an easy-to-use claim system. Your creations are safe and secure.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🏰</span>
+                    <div class="feature-content">
+                        <h3>New Spawn & Custom Builds</h3>
+                        <p>Explore a stunning spawn area and breathtaking custom builds crafted by talented builders.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📊</span>
+                    <div class="feature-content">
+                        <h3>Leaderboards</h3>
+                        <p>Compete for the top spot! Track your stats and achievements on dynamic leaderboards.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🚧</span>
+                    <div class="feature-content">
+                        <h3>Active Development</h3>
+                        <p>Constant updates, new features, and community-driven improvements. CosmoMC is always evolving!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="owners">
+            <strong>Server Owners:</strong> @ZEROPLAYZYT &amp; @Yug<br>
+            <span style="font-size:0.95em; color:#00ffe7;">Passionate Minecraft veterans, dedicated to building the best experience for you!</span>
+        </div>
+        <div id="join" style="text-align:center;">
+            <a class="discord-link" href="https://discord.gg/h6kRNjkN" target="_blank" rel="noopener">
+                <span style="font-size:1.3em; vertical-align:middle;">💬</span> Join our Discord
+            </a>
+        </div>
+        <div class="updates">
+            📢 Stay tuned for updates, giveaways, sneak peeks &amp; early access!<br>
+            <span style="color:#ffd700;">Let’s make CosmoMC the next big thing — together 💫</span>
+        </div>
+    </main>
+    <script>
+        // Animated starfield background
+        const canvas = document.querySelector('.starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        function createStars() {
+            stars = [];
+            for (let i = 0; i < 180; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.2 + 0.3,
+                    d: Math.random() * 0.5 + 0.2,
+                    o: Math.random() * 0.5 + 0.5
+                });
+            }
+        }
+        createStars();
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let s of stars) {
+                ctx.save();
+                ctx.globalAlpha = s.o;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+                ctx.fillStyle = '#00ffe7';
+                ctx.shadowColor = '#00ffe7';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.restore();
+                s.x += s.d;
+                if (s.x > canvas.width) {
+                    s.x = 0;
+                    s.y = Math.random() * canvas.height;
+                }
+            }
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
+        window.addEventListener('resize', createStars);
+        window.addEventListener('resize', animateStars);
+    </script>
+
+</body>
+</html>
